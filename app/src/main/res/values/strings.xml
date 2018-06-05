@@ -6,4 +6,8 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+    <string name="game_news">Game News</string>
+    <string name="_00388913_uca_edu_sv">00388913@uca.edu.sv</string>
+    <string name="noticias">Noticias</string>
+    <string name="juegos">Juegos</string>
 </resources>
