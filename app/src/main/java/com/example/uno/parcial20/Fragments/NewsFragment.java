@@ -104,10 +104,10 @@ public class NewsFragment extends Fragment {
                     } else {
                         game = auxList.get(i).getGame();
                     }
-                    if (auxList.get(i).getImage() == null) {
+                    if (auxList.get(i).getCoverImage() == null) {
                         image = "No Encontrado";
                     } else {
-                        image = auxList.get(i).getImage();
+                        image = auxList.get(i).getCoverImage();
                     }
                     if (auxList.get(i).getDescription() == null) {
                         description = "No Encontrao";

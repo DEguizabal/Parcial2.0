@@ -6,23 +6,20 @@ public class News {
     private String title;
     private String body;
     private String game;
-    private String Image;
+    private String coverImage;
     private String description;
     private String created_date;
     private int __v;
 
-
-    public News(String _id, String title, String body, String game, String image, String description, String created_date, int __v) {
+    public News(String _id, String title, String body, String game, String coverImage, String description, String created_date, int __v) {
         this._id = _id;
         this.title = title;
         this.body = body;
         this.game = game;
-        this.Image = image;
+        this.coverImage = coverImage;
         this.description = description;
         this.created_date = created_date;
         this.__v = __v;
-
-
     }
 
     public String get_id() {
@@ -57,12 +54,12 @@ public class News {
         this.game = game;
     }
 
-    public String getImage() {
-        return Image;
+    public String getCoverImage() {
+        return coverImage;
     }
 
-    public void setImage(String image) {
-        Image = image;
+    public void setCoverImage(String coverImage) {
+        this.coverImage = coverImage;
     }
 
     public String getDescription() {
@@ -88,5 +85,4 @@ public class News {
     public void set__v(int __v) {
         this.__v = __v;
     }
-
 }

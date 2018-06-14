@@ -38,8 +38,8 @@ public class RecyclerViewAdapterNews extends RecyclerView.Adapter<RecyclerViewAd
         holder.newsTitle.setText(NewsListData.get(position).getTitle());
         holder.newsSubtitle.setText(NewsListData.get(position).getGame());
 
-        if(NewsListData.get(position).getImage() != "No image found"){
-            Picasso.with(context).load(NewsListData.get(position).getImage()).into(holder.newsImage);
+        if(NewsListData.get(position).getCoverImage() != "No image found"){
+            Picasso.with(context).load(NewsListData.get(position).getCoverImage()).into(holder.newsImage);
         }
     }
 
