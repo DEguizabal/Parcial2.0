@@ -20,7 +20,7 @@ public class GameInfoFragment extends Fragment{
     private TabLayout TabLayoutMenu;
     private ViewPager Columns;
     private ViewPagerAdapter Elements;
-    View v;
+    private View v;
 
     @Nullable
     @Override

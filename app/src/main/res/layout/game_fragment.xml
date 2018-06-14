@@ -8,10 +8,10 @@
         android:id="@+id/tablayout_menu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorAccent"
+        android:background="@color/cardview_dark_background"
         android:baselineAligned="false"
         app:tabGravity="fill"
-        app:tabIndicatorColor="@color/colorPrimary"
+        app:tabIndicatorColor="@color/colorPrimaryDark"
         app:tabMode="fixed"
         />
 

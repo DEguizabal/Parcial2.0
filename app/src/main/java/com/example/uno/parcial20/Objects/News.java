@@ -1,58 +1,92 @@
 package com.example.uno.parcial20.Objects;
 
 public class News {
-    private String imageNews;
-    private String titleNews;
-    private String subtitleNews;
-    private boolean favoriteNews;
-    private int newsID;
 
-    public News(String imageNews, String titleNews, String subtitleNews, boolean favoriteNews, int newsID) {
-        this.imageNews = imageNews;
-        this.titleNews = titleNews;
-        this.subtitleNews = subtitleNews;
-        this.favoriteNews = favoriteNews;
-        this.newsID = newsID;
+    private String _id;
+    private String title;
+    private String body;
+    private String game;
+    private String Image;
+    private String description;
+    private String created_date;
+    private int __v;
+
+
+    public News(String _id, String title, String body, String game, String image, String description, String created_date, int __v) {
+        this._id = _id;
+        this.title = title;
+        this.body = body;
+        this.game = game;
+        this.Image = image;
+        this.description = description;
+        this.created_date = created_date;
+        this.__v = __v;
+
+
     }
 
-    public String getimageNews() {
-
-        return imageNews;
+    public String get_id() {
+        return _id;
     }
 
-    public void setimageNews(String imageNews) {
-        this.imageNews = imageNews;
+    public void set_id(String _id) {
+        this._id = _id;
     }
 
-    public String gettitleNews() {
-        return titleNews;
+    public String getTitle() {
+        return title;
     }
 
-    public void settitleNews(String titleNews) {
-        this.titleNews = titleNews;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getSubtitleNews() {
-        return subtitleNews;
+    public String getBody() {
+        return body;
     }
 
-    public void setSubtitleNews(String subtitleNews) {
-        this.subtitleNews = subtitleNews;
+    public void setBody(String body) {
+        this.body = body;
     }
 
-    public boolean isFavoriteNews() {
-        return favoriteNews;
+    public String getGame() {
+        return game;
     }
 
-    public void setFavoriteNews(boolean favoriteNews) {
-        this.favoriteNews = favoriteNews;
+    public void setGame(String game) {
+        this.game = game;
     }
 
-    public int getNewsID() {
-        return newsID;
+    public String getImage() {
+        return Image;
     }
 
-    public void setNewsID(int newsID) {
-        this.newsID = newsID;
+    public void setImage(String image) {
+        Image = image;
     }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getCreated_date() {
+        return created_date;
+    }
+
+    public void setCreated_date(String created_date) {
+        this.created_date = created_date;
+    }
+
+    public int get__v() {
+        return __v;
+    }
+
+    public void set__v(int __v) {
+        this.__v = __v;
+    }
+
 }

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
@@ -12,21 +13,41 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.uno.parcial20.Adapters.RecyclerViewAdapterNews;
+import com.example.uno.parcial20.Interface.RequestHelper;
 import com.example.uno.parcial20.Objects.News;
 import com.example.uno.parcial20.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class NewsFragment  extends Fragment {
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
-    View v;
-    private RecyclerView RVnews;
-    private List<News> listNews;
+import static com.example.uno.parcial20.Activities.Login.globalToken;
+
+public class NewsFragment extends Fragment {
+
+    private View v;
+    private RequestHelper requestHelper;
+    private String baseUrl;
+    private Retrofit retrofit;
+    private Call<List<News>> call;
+    private List<News> auxList = null;
+    private List<News> listNewsSend;
+    private RecyclerView newsRecycler;
+
+    private String title;
+    private String body;
+    private String game;
+    private String image;
+    private String description;
+    private String created_date;
 
     public NewsFragment() {
     }
-
 
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -35,32 +56,103 @@ public class NewsFragment  extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 
-        v = inflater.inflate(R.layout.news_fragment,container,false);
+        v = inflater.inflate(R.layout.news_fragment, container, false);
 
-        RVnews = v.findViewById(R.id.news_recyclerview);
-        RecyclerViewAdapterNews recyclerViewAdapter = new  RecyclerViewAdapterNews(getContext(), listNews);
-        RVnews.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
-        RVnews.setAdapter(recyclerViewAdapter);
+        loadNews(v);
+
         return v;
-
-
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
 
-        listNews = new ArrayList<>();
-        listNews.add(new News("imagen","TituloNoticia1","SubNoticia1",false,1));
-        listNews.add(new News("imagen","TituloNoticia2","SubNoticia2",false,2));
-        listNews.add(new News("imagen","TituloNoticia3","SubNoticia3",false,3));
-        listNews.add(new News("imagen","TituloNoticia4","SubNoticia4",false,4));
-        listNews.add(new News("imagen","TituloNoticia5","SubNoticia5",false,5));
-        listNews.add(new News("imagen","TituloNoticia6","SubNoticia6",false,6));
-        listNews.add(new News("imagen","TituloNoticia7","SubNoticia7",false,7));
-        listNews.add(new News("imagen","TituloNoticia8","SubNoticia8",false,8));
-        listNews.add(new News("imagen","TituloNoticia9","SubNoticia9",false,9));
-        listNews.add(new News("imagen","TituloNoticia10","SubNoticia10",false,10));
+    public void loadNews(final View v) {
+
+        baseUrl = "http://gamenewsuca.herokuapp.com/";
+
+        if (retrofit == null) {
+            retrofit = new Retrofit.Builder()
+                    .baseUrl(baseUrl)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+        }
+        requestHelper = retrofit.create(RequestHelper.class);
+
+        call = requestHelper.getNewsRequest("Bearer " + globalToken);
+
+        call.enqueue(new Callback<List<News>>() {
+            @Override
+            public void onResponse(Call<List<News>> call, Response<List<News>> response) {
+                auxList = response.body();
+                listNewsSend = new ArrayList<>();
+
+                for (int i = 0; i < auxList.size(); i++) {
+                    if (auxList.get(i).getTitle() == null) {
+                        title = "No Encontrado";
+                    } else {
+                        title = auxList.get(i).getTitle();
+                    }
+                    if (auxList.get(i).getBody() == null) {
+                        body = "No Encontrado";
+                    } else {
+                        body = auxList.get(i).getBody();
+                    }
+                    if (auxList.get(i).getGame() == null) {
+                        game = "No Encontrado";
+                    } else {
+                        game = auxList.get(i).getGame();
+                    }
+                    if (auxList.get(i).getImage() == null) {
+                        image = "No Encontrado";
+                    } else {
+                        image = auxList.get(i).getImage();
+                    }
+                    if (auxList.get(i).getDescription() == null) {
+                        description = "No Encontrao";
+                    } else {
+                        description = auxList.get(i).getDescription();
+                    }
+                    if (auxList.get(i).getCreated_date() == null) {
+                        created_date = " No Encontrado";
+                    } else {
+                        created_date = auxList.get(i).getCreated_date();
+                    }
+                    listNewsSend.add(new News(auxList.get(i).get_id()
+                            , title
+                            , body
+                            , game
+                            , image
+                            , description
+                            , created_date
+                            , auxList.get(i).get__v()));
+                }
+                newsRecycler = (RecyclerView) v.findViewById(R.id.news_recyclerview);
+                RecyclerViewAdapterNews recyclerViewAdapter = new RecyclerViewAdapterNews(getContext(), listNewsSend);
+
+                GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 2);
+                gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+                    @Override
+                    public int getSpanSize(int position) {
+                        if (position % 3 == 0) {
+                            return 2;
+                        } else {
+                            return 1;
+                        }
+                    }
+                });
+
+                newsRecycler.setLayoutManager(gridLayoutManager);
+                newsRecycler.setAdapter(recyclerViewAdapter);
+
+            }
+
+            @Override
+            public void onFailure(Call<List<News>> call, Throwable t) {
+
+            }
+        });
     }
 
 }

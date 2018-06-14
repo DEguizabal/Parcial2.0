@@ -1,4 +1,4 @@
-package com.example.uno.parcial20;
+package com.example.uno.parcial20.Activities;
 
 import android.app.FragmentManager;
 import android.os.Bundle;
@@ -17,11 +17,14 @@ import android.view.MenuItem;
 
 import com.example.uno.parcial20.Fragments.GameInfoFragment;
 import com.example.uno.parcial20.Fragments.NewsFragment;
+import com.example.uno.parcial20.R;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
 
     private Fragment actualFragment;
+    private String actualGame;
+    private Bundle toFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +41,8 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        navigationView.setCheckedItem(R.id.nav_news);
+        changeFragment(new NewsFragment());
     }
 
     @Override
@@ -78,24 +83,20 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        /*if (id == R.id.nav_news) {
-            // Handle the camera action
-        } else if (id == R.id.nav_games) {
-
-        } else if (id == R.id.nav_fav) {
-
-        } else if (id == R.id.nav_settings) {
-
-        }*/
-
-        FragmentManager fragmentManager = getFragmentManager();
-
         switch (id) {
             case R.id.nav_news:
                 changeFragment(new NewsFragment());
                 break;
 
-            case R.id.nav_games:
+            case R.id.nav_league_of_legends:
+                changeFragment(new GameInfoFragment());
+                break;
+
+            case R.id.nav_dota2:
+                changeFragment(new GameInfoFragment());
+                break;
+
+            case R.id.nav_cs_go:
                 changeFragment(new GameInfoFragment());
                 break;
 

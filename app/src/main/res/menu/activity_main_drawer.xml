@@ -8,12 +8,27 @@
             android:id="@+id/nav_news"
             android:icon="@drawable/ic_videogame_asset_black_24dp"
             android:title="News" />
-        <item
-            android:id="@+id/nav_games"
-            android:icon="@drawable/ic_library_books_black_24dp"
-            android:title="games" />
 
     </group>
+
+    <item android:title="Games">
+        <menu>
+            <item
+                android:id="@+id/nav_league_of_legends"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="League Of Legends"/>
+
+            <item
+                android:id="@+id/nav_dota2"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="Dota 2"/>
+
+            <item
+                android:id="@+id/nav_cs_go"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="CS GO"/>
+        </menu>
+    </item>
 
     <item android:title="Communicate">
         <menu>

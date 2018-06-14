@@ -4,6 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.images_fragment">
+    tools:context=".Fragments.ImageFragment">
 
 </android.support.constraint.ConstraintLayout>
