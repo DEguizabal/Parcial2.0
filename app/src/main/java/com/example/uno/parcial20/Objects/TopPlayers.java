@@ -2,29 +2,29 @@ package com.example.uno.parcial20.Objects;
 
 public class TopPlayers {
 
-    private String pic;
+    private String avatar;
     private String _id;
     private String name;
-    private String bio;
+    private String biografia;
     private String game;
     private int __v;
 
-    public TopPlayers(String pic, String _id, String name, String bio, String game, int __v){
-        this.pic = pic;
+    public TopPlayers(String avatar, String _id, String name, String biografia, String game, int __v){
+        this.avatar = avatar;
         this._id = _id;
         this.name = name;
-        this.bio = bio;
+        this.biografia = biografia;
         this.game = game;
         this.__v = __v;
     }
 
 
-    public String getPic() {
-        return pic;
+    public String getavatar() {
+        return avatar;
     }
 
-    public void setPic(String pic) {
-        this.pic = pic;
+    public void setavatar(String avatar) {
+        this.avatar = avatar;
     }
 
     public String get_id() {
@@ -43,12 +43,12 @@ public class TopPlayers {
         this.name = name;
     }
 
-    public String getBio() {
-        return bio;
+    public String getbiografia() {
+        return biografia;
     }
 
-    public void setBio(String bio) {
-        this.bio = bio;
+    public void setbiografia(String biografia) {
+        this.biografia = biografia;
     }
 
     public String getGame() {
