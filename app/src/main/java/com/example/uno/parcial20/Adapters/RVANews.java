@@ -1,9 +1,7 @@
 package com.example.uno.parcial20.Adapters;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,12 +14,12 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class RecyclerViewAdapterNews extends RecyclerView.Adapter<RecyclerViewAdapterNews.MyViewHolder>{
+public class RVANews extends RecyclerView.Adapter<RVANews.MyViewHolder>{
 
     private Context context;
     private List<News> NewsListData;
 
-    public RecyclerViewAdapterNews(Context context, List<News> NewsListData){
+    public RVANews(Context context, List<News> NewsListData){
         this.context = context;
         this.NewsListData = NewsListData;
     }

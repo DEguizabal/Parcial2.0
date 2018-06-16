@@ -21,6 +21,7 @@ public class GameInfoFragment extends Fragment{
     private ViewPager Columns;
     private ViewPagerAdapter Elements;
     private View v;
+    private String f;
 
     @Nullable
     @Override
@@ -32,8 +33,13 @@ public class GameInfoFragment extends Fragment{
         Columns = (ViewPager) v.findViewById(R.id.view_pager);
         Elements = new ViewPagerAdapter(getChildFragmentManager());
 
+
         Elements.AddFragment(new GeneralFragment(), "GENERAL");
-        Elements.AddFragment(new TopPlayerFragment(), "TOP PLAYERS");
+
+        TopPlayerFragment topPlayerFragment = new TopPlayerFragment();
+        topPlayerFragment.filtro(f);
+        Elements.AddFragment(topPlayerFragment, "TOP PLAYERS");
+
         Elements.AddFragment(new ImageFragment(),"IMAGE");
         TabLayoutMenu.setTabTextColors(Color.parseColor("#727272"), Color.parseColor("#ffffff"));
 
@@ -45,5 +51,10 @@ public class GameInfoFragment extends Fragment{
 
         return v;
 
+    }
+
+    public String filtro(String filtros){
+        f = filtros;
+        return f;
     }
 }

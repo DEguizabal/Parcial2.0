@@ -7,12 +7,11 @@ import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.uno.parcial20.Adapters.RecyclerViewAdapterNews;
+import com.example.uno.parcial20.Adapters.RVANews;
 import com.example.uno.parcial20.Interface.RequestHelper;
 import com.example.uno.parcial20.Objects.News;
 import com.example.uno.parcial20.R;
@@ -36,7 +35,7 @@ public class NewsFragment extends Fragment {
     private Retrofit retrofit;
     private Call<List<News>> call;
     private List<News> auxList = null;
-    private List<News> listNewsSend;
+    public static List<News> listNewsSend;
     private RecyclerView newsRecycler;
 
     private String title;
@@ -45,6 +44,7 @@ public class NewsFragment extends Fragment {
     private String image;
     private String description;
     private String created_date;
+    private String f;
 
     public NewsFragment() {
     }
@@ -89,47 +89,51 @@ public class NewsFragment extends Fragment {
                 listNewsSend = new ArrayList<>();
 
                 for (int i = 0; i < auxList.size(); i++) {
-                    if (auxList.get(i).getTitle() == null) {
-                        title = "No Encontrado";
-                    } else {
-                        title = auxList.get(i).getTitle();
-                    }
-                    if (auxList.get(i).getBody() == null) {
-                        body = "No Encontrado";
-                    } else {
-                        body = auxList.get(i).getBody();
-                    }
-                    if (auxList.get(i).getGame() == null) {
-                        game = "No Encontrado";
-                    } else {
-                        game = auxList.get(i).getGame();
-                    }
-                    if (auxList.get(i).getCoverImage() == null) {
-                        image = "No Encontrado";
-                    } else {
-                        image = auxList.get(i).getCoverImage();
-                    }
-                    if (auxList.get(i).getDescription() == null) {
-                        description = "No Encontrao";
-                    } else {
-                        description = auxList.get(i).getDescription();
-                    }
-                    if (auxList.get(i).getCreated_date() == null) {
-                        created_date = " No Encontrado";
-                    } else {
-                        created_date = auxList.get(i).getCreated_date();
-                    }
-                    listNewsSend.add(new News(auxList.get(i).get_id()
-                            , title
-                            , body
-                            , game
-                            , image
-                            , description
-                            , created_date
-                            , auxList.get(i).get__v()));
+
+
+
+                        if (auxList.get(i).getTitle() == null) {
+                            title = "No Encontrado";
+                        } else {
+                            title = auxList.get(i).getTitle();
+                        }
+                        if (auxList.get(i).getBody() == null) {
+                            body = "No Encontrado";
+                        } else {
+                            body = auxList.get(i).getBody();
+                        }
+                        if (auxList.get(i).getGame() == null) {
+                            game = "No Encontrado";
+                        } else {
+                            game = auxList.get(i).getGame();
+                        }
+                        if (auxList.get(i).getCoverImage() == null) {
+                            image = "No Encontrado";
+                        } else {
+                            image = auxList.get(i).getCoverImage();
+                        }
+                        if (auxList.get(i).getDescription() == null) {
+                            description = "No Encontrao";
+                        } else {
+                            description = auxList.get(i).getDescription();
+                        }
+                        if (auxList.get(i).getCreated_date() == null) {
+                            created_date = " No Encontrado";
+                        } else {
+                            created_date = auxList.get(i).getCreated_date();
+                        }
+                        listNewsSend.add(new News(auxList.get(i).get_id()
+                                , title
+                                , body
+                                , game
+                                , image
+                                , description
+                                , created_date
+                                , auxList.get(i).get__v()));
+
                 }
                 newsRecycler = (RecyclerView) v.findViewById(R.id.news_recyclerview);
-                RecyclerViewAdapterNews recyclerViewAdapter = new RecyclerViewAdapterNews(getContext(), listNewsSend);
+                RVANews recyclerViewAdapter = new RVANews(getContext(), listNewsSend);
 
                 GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 2);
                 gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
@@ -154,5 +158,8 @@ public class NewsFragment extends Fragment {
             }
         });
     }
-
+    public String filtro(String filtros){
+        f = filtros;
+        return f;
+    }
 }

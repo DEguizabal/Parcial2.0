@@ -23,8 +23,10 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
 
     private Fragment actualFragment;
+    private GameInfoFragment juegoA;
     private String actualGame;
     private Bundle toFragment;
+    private String f;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,23 +91,32 @@ public class MainActivity extends AppCompatActivity
                 break;
 
             case R.id.nav_league_of_legends:
-                changeFragment(new GameInfoFragment());
+                f = "lol";
+                juegoA = new GameInfoFragment();
+                juegoA.filtro(f);
+                changeFragment(juegoA);
                 break;
 
-            case R.id.nav_dota2:
-                changeFragment(new GameInfoFragment());
+            case R.id.nav_overwatch:
+                f = "overwatch";
+                juegoA = new GameInfoFragment();
+                juegoA.filtro(f);
+                changeFragment(juegoA);
                 break;
 
             case R.id.nav_cs_go:
-                changeFragment(new GameInfoFragment());
+                f = "csgo";
+                juegoA = new GameInfoFragment();
+                juegoA.filtro(f);
+                changeFragment(juegoA);
                 break;
 
             case R.id.nav_fav:
-                changeFragment(new GameInfoFragment());
+                //changeFragment();
                 break;
 
             case R.id.nav_settings:
-                changeFragment(new GameInfoFragment());
+                //changeFragment( );
                 break;
         }
 
@@ -115,10 +126,8 @@ public class MainActivity extends AppCompatActivity
         }
 
     private void changeFragment(Fragment fragment) {
-        if (actualFragment == null || !fragment.getClass().getName().equals(actualFragment.getClass().getName())) {
             getSupportFragmentManager().beginTransaction().replace(R.id.frame_content, fragment).commit();
             actualFragment = fragment;
-        }
 
     }
 }

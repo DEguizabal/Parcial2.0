@@ -9,7 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.uno.parcial20.Adapters.RecyclerViewAdapterTopPlayers;
+import com.example.uno.parcial20.Adapters.RVATopPlayers;
 import com.example.uno.parcial20.Interface.RequestHelper;
 import com.example.uno.parcial20.Objects.TopPlayers;
 import com.example.uno.parcial20.R;
@@ -44,6 +44,7 @@ public class TopPlayerFragment extends Fragment{
     private String biografia;
     private String game;
     private String __v;
+    private String f;
 
     public TopPlayerFragment() {
     }
@@ -75,33 +76,36 @@ public class TopPlayerFragment extends Fragment{
                 auxList = response.body();
                 listPlayersSend = new ArrayList<>();
 
-                for (int i = 0; i<auxList.size(); i++){
-                    if (auxList.get(i).getavatar() == null){
-                        avatar = "No Encontrado";
-                    }else {
-                        avatar = auxList.get(i).getavatar();
-                    }
-                    if (auxList.get(i).getName() == null){
-                        name ="No Encontrado";
-                    }else {
-                        name = auxList.get(i).getName();
-                    }
-                    if (auxList.get(i).getbiografia() == null){
-                        biografia = "No Encontrado";
-                    }else {
-                        biografia = auxList.get(i).getbiografia();
-                    }
-                    if (auxList.get(i).getGame() == null){
-                        game = "No Encontrado";
-                    }else {
-                        game = auxList.get(i).getGame();
-                    }
+                for (int i = 0; i<auxList.size(); i++) {
 
-                    listPlayersSend.add(new TopPlayers(avatar, auxList.get(i).get_id(), name, biografia, game, auxList.get(i).get__v()));
+                    if (auxList.get(i).getGame().equals(f)) {
+
+                        if (auxList.get(i).getavatar() == null) {
+                            avatar = "No Encontrado";
+                        } else {
+                            avatar = auxList.get(i).getavatar();
+                        }
+                        if (auxList.get(i).getName() == null) {
+                            name = "No Encontrado";
+                        } else {
+                            name = auxList.get(i).getName();
+                        }
+                        if (auxList.get(i).getbiografia() == null) {
+                            biografia = "No Encontrado";
+                        } else {
+                            biografia = auxList.get(i).getbiografia();
+                        }
+                        if (auxList.get(i).getGame() == null) {
+                            game = "No Encontrado";
+                        } else {
+                            game = auxList.get(i).getGame();
+                        }
+
+                        listPlayersSend.add(new TopPlayers(avatar, auxList.get(i).get_id(), name, biografia, game, auxList.get(i).get__v()));
+                    }
                 }
-
                 topPlayersRecyclerView = (RecyclerView) v.findViewById(R.id.top_players_recyclerview);
-                RecyclerViewAdapterTopPlayers recyclerViewAdapter = new RecyclerViewAdapterTopPlayers(getContext(), listPlayersSend);
+                RVATopPlayers recyclerViewAdapter = new RVATopPlayers(getContext(), listPlayersSend);
                 topPlayersRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
                 topPlayersRecyclerView.setAdapter(recyclerViewAdapter);
             }
@@ -111,5 +115,10 @@ public class TopPlayerFragment extends Fragment{
 
             }
         });
+    }
+
+    public String filtro(String filtros){
+        f = filtros;
+        return f;
     }
 }

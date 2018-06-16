@@ -15,12 +15,12 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class RecyclerViewAdapterTopPlayers extends RecyclerView.Adapter<RecyclerViewAdapterTopPlayers.MyViewHolder>{
+public class RVATopPlayers extends RecyclerView.Adapter<RVATopPlayers.MyViewHolder>{
 
     private Context context;
     private List<TopPlayers> TopPlayersDataList;
 
-    public RecyclerViewAdapterTopPlayers(Context context, List<TopPlayers> topPlayersDataList){
+    public RVATopPlayers(Context context, List<TopPlayers> topPlayersDataList){
         this.context = context;
         TopPlayersDataList = topPlayersDataList;
     }

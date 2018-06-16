@@ -5,6 +5,7 @@
     cardview:elevation="16dp"
     android:id="@+id/news_cardview"
     android:clickable="true"
+    android:foreground="?android:attr/selectableItemBackground"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
