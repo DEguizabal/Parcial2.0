@@ -61,7 +61,7 @@ public class Login extends AppCompatActivity{
                 call.enqueue(new Callback<User>() {
                     @Override
                     public void onResponse(Call<User> call, Response<User> response) {
-                        if (response.body().getToken() != null){
+                        if (response.code() != 401){
                             globalToken = response.body().getToken().toString();
                             toNavDrawer = new Intent(Login.this, MainActivity.class);
                             startActivity(toNavDrawer);

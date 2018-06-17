@@ -14,6 +14,8 @@ import com.example.uno.parcial20.R;
  */
 public class ImageFragment extends Fragment{
 
+
+
     public ImageFragment() {
     }
 
